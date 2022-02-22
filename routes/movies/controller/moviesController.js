@@ -21,6 +21,38 @@ const createMovie = async (req, res) => {
     }
 }
 
+const getAllMovies = async (req, res) => {
+    try {
+        let allMovies = await Movie.find();
+        res.status(200).json(allMovies);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
+const updateMovie = async (req, res) => {
+    try {
+        const { id } = req.params;
+        let updateMovie = await Movie.findByIdAndUpdate(id, req.body, { new: true });
+        res.status(200).json({ message: 'Movie was updated', payload: updateMovie });
+    } catch (error) {
+        res.status(500).json({ message: 'There is an error', error: error.message });
+    }
+}
+
+const deleteMovie = async (req, res) => {
+    try {
+        const { id } = req.params;
+        let deleteMovie = await Movie.findByIdAndDelete(id);
+        res.status(200).json({ message: 'Movie was deleted', payload: deleteMovie });
+    } catch (error) {
+        res.status(500).json({ message: 'There is an error', error: error.message });
+    }
+}
+
 module.exports = {
-    createMovie
+    createMovie,
+    getAllMovies,
+    updateMovie,
+    deleteMovie
 }
