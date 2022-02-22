@@ -32,7 +32,7 @@ const getAllMovies = async (req, res) => {
 
 const getOneMovie = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.body;
         let oneMovie = await Movie.findById(id);
         res.status(200).json(oneMovie);
     } catch (error) {
@@ -42,7 +42,7 @@ const getOneMovie = async (req, res) => {
 
 const updateMovie = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.body;
         let updateMovie = await Movie.findByIdAndUpdate(id, req.body, { new: true });
         res.status(200).json({ message: 'Movie was updated', payload: updateMovie });
     } catch (error) {
@@ -52,7 +52,7 @@ const updateMovie = async (req, res) => {
 
 const deleteMovie = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.body;
         let deleteMovie = await Movie.findByIdAndDelete(id);
         res.status(200).json({ message: 'Movie was deleted', payload: deleteMovie });
     } catch (error) {

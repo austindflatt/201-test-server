@@ -14,12 +14,12 @@ router.post('/create-movie', createMovie);
 router.get('/get-all-movies', getAllMovies);
 
 // Get single movie
-router.get('/get-one-movie/:id', getOneMovie);
+router.post('/get-one-movie', getOneMovie);
 
 // Update movie
-router.put('/update-movie/:id', updateMovie);
+router.put('/update-movie', updateMovie);
 
 // Delete movie
-router.delete('/delete-movie/:id', deleteMovie);
+router.delete('/delete-movie', deleteMovie);
 
 module.exports = router;
