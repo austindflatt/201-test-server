@@ -30,6 +30,16 @@ const getAllMovies = async (req, res) => {
     }
 }
 
+const getOneMovie = async (req, res) => {
+    try {
+        const { id } = req.params;
+        let oneMovie = await Movie.findById(id);
+        res.status(200).json(oneMovie);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+}
+
 const updateMovie = async (req, res) => {
     try {
         const { id } = req.params;
@@ -53,6 +63,7 @@ const deleteMovie = async (req, res) => {
 module.exports = {
     createMovie,
     getAllMovies,
+    getOneMovie,
     updateMovie,
     deleteMovie
 }
